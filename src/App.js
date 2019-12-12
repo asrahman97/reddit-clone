@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'font-awesome/css/font-awesome.min.css';
+
 
 import CreatePost from './components/createPost'
 
@@ -70,9 +72,13 @@ class App extends Component {
       default:
         console.log('Something wrong in the vote function')
     }
+
+    ash.push(sentPost);
+    ash.sort((a,b) => b.voteCount - a.voteCount)
+
     // sentPost.voteCount++;
     this.setState({
-      posts: [...ash, sentPost]
+      posts: ash
     })
   }
 
@@ -98,8 +104,13 @@ class App extends Component {
             <h3>{post.content}</h3>
             <h3>{post.author}</h3>
             <h2 className={post.voteCount >= 0 ? 'pos-number' : 'neg-number'}>{post.voteCount}</h2>
-            <button onClick={(e) => this.vote(e, post, 'plus')}>Vote Up</button>
-            <button onClick={(e) => this.vote(e, post, 'minus')}>Vote Down</button>
+            
+            {/* <button onClick={(e) => this.vote(e, post, 'plus')}>Vote Up</button> */}
+
+            <i className="fa fa-angle-double-up" onClick={(e) => this.vote(e, post, 'plus')}></i>
+
+            <i className="fa fa-angle-double-down" onClick={(e) => this.vote(e, post, 'minus')}></i>
+            {/* <button onClick={(e) => this.vote(e, post, 'minus')}>Vote Down</button> */}
           </div>
         )}
 
