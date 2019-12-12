@@ -12,11 +12,13 @@ class Post extends Component {
         content: '',
         author: 'Ash Rahman',
         voteCount: 0,
+        comments: [],
         posts: [{
           title: 'This is my post',
           content: 'My post is pretty good',
           author: 'Ash Rahman',
-          voteCount: 0
+          voteCount: 0,
+          comments: ['This post sucks', 'That guy is a jerk', 'Cool dude']
           }]  
 
 
