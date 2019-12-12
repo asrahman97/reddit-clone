@@ -42,7 +42,8 @@ class App extends Component {
     const newPost = {
       author: this.state.author,
       content: this.state.content,
-      title: this.state.title
+      title: this.state.title,
+      voteCount: 0
     }
 
 
@@ -51,18 +52,31 @@ class App extends Component {
       posts,
       content: '',
       title: '',
-      author: 'Ash Rahman'
+      author: 'Ash Rahman',
+      
     })
   }
 
-  upVote = (e, sentPost) => {
+  vote = (e, sentPost, operator) => {
     e.preventDefault();
     const ash = this.state.posts.filter(checkPost => sentPost.title !== checkPost.title);
-    sentPost.voteCount++;
+    switch(operator) {
+      case 'plus':
+        sentPost.voteCount++
+        break;
+      case 'minus':
+        sentPost.voteCount--
+        break;
+      default:
+        console.log('Something wrong in the vote function')
+    }
+    // sentPost.voteCount++;
     this.setState({
       posts: [...ash, sentPost]
     })
   }
+
+  
 
 
   render() {
@@ -83,8 +97,9 @@ class App extends Component {
             <h4>{post.title}</h4>
             <h3>{post.content}</h3>
             <h3>{post.author}</h3>
-            <button onClick={(e) => this.upVote(e, post)}>Vote Up</button>
-            <button onClick={(e) => this.downVote(e, post)}>Vote Down</button>
+            <h2 className={post.voteCount >= 0 ? 'pos-number' : 'neg-number'}>{post.voteCount}</h2>
+            <button onClick={(e) => this.vote(e, post, 'plus')}>Vote Up</button>
+            <button onClick={(e) => this.vote(e, post, 'minus')}>Vote Down</button>
           </div>
         )}
 

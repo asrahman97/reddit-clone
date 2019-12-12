@@ -15,6 +15,12 @@ textarea {
   padding-bottom: 20px;
 }
 
+.neg-number {
+  color: grey;
+}
+
+
+
 .post-wrapper h4, .post-wrapper h3 {
   margin: 0;
   padding: 0;
